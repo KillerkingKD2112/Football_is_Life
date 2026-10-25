@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Football is Life</title>
+  <meta name="description" content="Predict matches and read teams, players and managers through xG, passing, shots, saves and tackles.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="top">
+    <h1 class="brand">Football<br>is Life</h1>
+    <nav aria-label="Sections">
+      <button class="tab" data-view="match" aria-current="page">Match</button>
+      <button class="tab" data-view="teams">Teams</button>
+      <button class="tab" data-view="players">Players</button>
+      <button class="tab" data-view="managers">Managers</button>
+    </nav>
+  </header>
+
+  <p class="notice" role="note">Sample numbers for now. Swap in real data before trusting a prediction.</p>
+
+  <main id="main">
+    <section id="view-match" class="view">
+      <div class="pickers">
+        <label>Home <select id="homeSel"></select></label>
+        <button id="swapBtn" class="swap" aria-label="Swap home and away">Swap</button>
+        <label>Away <select id="awaySel"></select></label>
+      </div>
+
+      <div class="scoreboard" aria-live="polite">
+        <div class="side"><span class="tname" id="homeName"></span><span class="xgnum" id="homeXg"></span><span class="xglabel">expected goals</span></div>
+        <div class="likely"><span class="xglabel">Most likely score</span><span class="score" id="likelyScore"></span></div>
+        <div class="side right"><span class="tname" id="awayName"></span><span class="xgnum" id="awayXg"></span><span class="xglabel">expected goals</span></div>
+      </div>
+
+      <div class="pitchwrap"><svg id="pitch" viewBox="0 0 1050 680" role="img" aria-label="Pitch showing each team's defensive line, press and attacking width"></svg></div>
+      <p class="legend">Dashed line: where each team defends. Shaded depth: how far up the press reaches. Side bands: how much play goes wide.</p>
+
+      <div class="cols">
+        <div>
+          <h2>Result odds</h2>
+          <div id="odds" class="odds"></div>
+          <p class="small" id="extraOdds"></p>
+        </div>
+        <div>
+          <h2>Likeliest scores</h2>
+          <ol id="scorelines" class="scorelines"></ol>
+        </div>
+        <div>
+          <h2>How the styles meet</h2>
+          <ul id="insights" class="plain"></ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-teams" class="view" hidden>
+      <h2>Teams</h2>
+      <div class="tablewrap"><table id="teamTable"></table></div>
+      <div id="teamDetail" class="detail"></div>
+    </section>
+
+    <section id="view-players" class="view" hidden>
+      <h2>Players</h2>
+      <div class="filters" id="posFilters" role="group" aria-label="Position"></div>
+      <div id="playerList" class="plist"></div>
+    </section>
+
+    <section id="view-managers" class="view" hidden>
+      <h2>Managers</h2>
+      <div id="managerList" class="mlist"></div>
+    </section>
+  </main>
+
+  <footer><p>Football is Life. Predictions use a Poisson model on xG for and against with a small home advantage.</p></footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/engine.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
